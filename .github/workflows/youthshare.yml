@@ -3,7 +3,7 @@ name: youthshare
 on:
   workflow_dispatch:
   schedule:
-     - cron: '0 4,10 * * *'
+     - cron: '0 0-23/4 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest    
@@ -11,19 +11,19 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/Banme55/SQ1.git ~/SQ1
+          git clone https://github.com/NickyKwan/youth.git ~/youth
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
       - name: npm install
         run: |
-          cd ~/SQ1
+          cd ~/youth
           npm install
           npm install cron
           npm install request
           npm install md5-node
       - name: '运行 【youthshare】'
         run: |
-          cd ~/SQ1   
+          cd ~/youth   
           node Task/youthshare.js
